@@ -36,19 +36,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.seconds().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                tvCounter.setText(integer+"");
-                stateCheck=true;
-            }
+        viewModel.seconds().observe(this, integer -> {
+            tvCounter.setText(integer+"");
+            stateCheck=true;
         });
 
-        viewModel.finished().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                tvCounter.setText("FINISHED");
-            }
-        });
+        viewModel.finished().observe(this, aBoolean -> tvCounter.setText("FINISHED"));
     }
 }
